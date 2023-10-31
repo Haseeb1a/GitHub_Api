@@ -2,11 +2,16 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class ArticleScreen extends StatelessWidget {
+class ArticleScreen extends StatefulWidget {
   ArticleScreen({super.key, required this.blogUrl});
 
   final String blogUrl;
 
+  @override
+  State<ArticleScreen> createState() => _ArticleScreenState();
+}
+
+class _ArticleScreenState extends State<ArticleScreen> {
   final Completer<WebViewController> _completer =
       Completer<WebViewController>();
 
@@ -30,7 +35,7 @@ class ArticleScreen extends StatelessWidget {
                 fontSize: 20, fontWeight: FontWeight.bold, color: Colors.green),
           )
         ])),
-          actions: [
+        actions: [
           CircleAvatar(
             radius: 50,
             child: Image.network(
@@ -40,7 +45,7 @@ class ArticleScreen extends StatelessWidget {
       ),
       body: Container(
         child: WebView(
-          initialUrl: blogUrl,
+          initialUrl: widget.blogUrl,
           onWebViewCreated: (controller) {
             _completer.complete(controller);
           },

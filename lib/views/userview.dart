@@ -4,9 +4,9 @@ import 'package:github/views/webview.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-
 import '../model/githubmodel.dart';
 import '../services/gitservices.dart';
+
 class WeatherView extends StatefulWidget {
   String? user;
   WeatherView({required this.user}) {}
@@ -112,63 +112,69 @@ class _WeatherViewState extends State<WeatherView> {
                                 ),
                               ),
                             ])),
-                            SizedBox(height: 40,),
-                            SizedBox(
-                              height: 60,
-                              child: Card(
-                                color: Color.fromARGB(255, 255, 255, 255),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Row(
-                                    children: [
-                                      Icon(Icons.person_pin,color: const Color.fromARGB(255, 0, 0, 0),size: 38,),
-                                      SizedBox(
-                                   width: 10,
-                                      ),
-                                      RichText(
-                                     text: TextSpan(
-                                         text: '${githubData!.followers}  ',
-                                         style: TextStyle(
-                                           color: Color.fromARGB(255, 0, 0, 0),
-                                           fontSize: 21,
-                                           fontWeight: FontWeight.bold,
-                                         ),
-                                         children: <TextSpan>[
-                                       TextSpan(
-                                         text: 'followers  ',
-                                         style: TextStyle(
-                                           color: Colors.green,
-                                           fontSize: 20,
-                                           fontWeight: FontWeight.bold,
-                                         ),
-                                       ),
-                                     ])),
-                                      SizedBox(
-                                   width: 10,
-                                      ),
-                                      RichText(
-                                     text: TextSpan(
-                                         text: '${githubData!.following}  ',
-                                         style: TextStyle(
-                                           color: Colors.black,
-                                           fontSize: 21,
-                                           fontWeight: FontWeight.bold,
-                                         ),
-                                         children: <TextSpan>[
-                                       TextSpan(
-                                         text: 'following  ',
-                                         style: TextStyle(
-                                           color: Colors.green,
-                                           fontSize: 20,
-                                           fontWeight: FontWeight.bold,
-                                         ),
-                                       ),
-                                     ])),
-                                    ],
+                        SizedBox(
+                          height: 40,
+                        ),
+                        SizedBox(
+                          height: 60,
+                          child: Card(
+                            color: Color.fromARGB(255, 255, 255, 255),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.person_pin,
+                                    color: Color.fromARGB(255, 0, 0, 0),
+                                    size: 38,
                                   ),
-                                ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  RichText(
+                                      text: TextSpan(
+                                          text: '${githubData!.followers}  ',
+                                          style: TextStyle(
+                                            color: Color.fromARGB(255, 0, 0, 0),
+                                            fontSize: 21,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          children: <TextSpan>[
+                                        TextSpan(
+                                          text: 'followers  ',
+                                          style: TextStyle(
+                                            color: Colors.green,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ])),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  RichText(
+                                      text: TextSpan(
+                                          text: '${githubData!.following}  ',
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 21,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          children: <TextSpan>[
+                                        TextSpan(
+                                          text: 'following  ',
+                                          style: TextStyle(
+                                            color: Colors.green,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ])),
+                                ],
                               ),
-                            )
+                            ),
+                          ),
+                        )
                       ],
                     ),
                     SizedBox(
@@ -176,7 +182,7 @@ class _WeatherViewState extends State<WeatherView> {
                       child: Card(
                         color: Color.fromARGB(255, 255, 255, 255),
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(5.0),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -196,26 +202,43 @@ class _WeatherViewState extends State<WeatherView> {
                                   ),
                                 ),
                               ),
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.location_city_rounded,
-                                    color: Color.fromARGB(255, 255, 219, 164)
+                              SizedBox(
+                                height: 45,
+                                child: Card(
+                                  color: Color.fromARGB(255, 35, 34, 34),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      children: [
+                                        Icon(Icons.location_city_rounded,
+                                            color: Color.fromARGB(
+                                                255, 255, 219, 164)),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          '${githubData!.company}  ',
+                                          style: TextStyle(
+                                              color: Color.fromARGB(
+                                                  255, 255, 255, 255),
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: s * 0.014),
+                                        ),
+                                        Icon(Icons.location_on_outlined,
+                                            color: Colors.yellow),
+                                        Text(
+                                          ' ${githubData!.location}',
+                                          style: TextStyle(
+                                            color: Color.fromARGB(
+                                                255, 255, 255, 255),
+                                            fontSize: s * 0.014,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  SizedBox(width: 10,),
-                                  Text(
-                                    '${githubData!.company}  ',
-                                    style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0),fontWeight: FontWeight.bold,fontSize: s*0.015 ),
-                                  ),
-                                  Icon(
-                                    Icons.location_on_outlined,
-                                    color: Colors.yellow
-                                  ),
-                                  Text(
-                                    ' ${githubData!.location}',
-                                    style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0),fontSize: s*0.015,fontWeight: FontWeight.bold,),
-                                  ),
-                                ],
+                                ),
                               ),
                               Row(
                                 children: [
@@ -223,8 +246,7 @@ class _WeatherViewState extends State<WeatherView> {
                                       text: TextSpan(
                                           text: 'Type   ',
                                           style: TextStyle(
-                                            color:
-                                                Color.fromARGB(255, 0, 0, 0),
+                                            color: Color.fromARGB(255, 0, 0, 0),
                                             fontSize: 15,
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -263,7 +285,7 @@ class _WeatherViewState extends State<WeatherView> {
                                       text: TextSpan(
                                           text: '${githubData!.publicGists} ',
                                           style: TextStyle(
-                                  color: Colors.yellow,
+                                            color: Colors.yellow,
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -276,14 +298,12 @@ class _WeatherViewState extends State<WeatherView> {
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
-                                        
                                       ])),
-                                     
-                       
                                 ],
-                                
                               ),
-                                     SizedBox(height: 5,)
+                              SizedBox(
+                                height: 5,
+                              )
                             ],
                           ),
                         ),
@@ -330,16 +350,38 @@ class _WeatherViewState extends State<WeatherView> {
                       ],
                     ),
                     GestureDetector(
-                      onTap:() => Navigator.push(context, MaterialPageRoute(builder: (context) => ArticleScreen(blogUrl:githubData!.htmlUrl ),)),
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                ArticleScreen(blogUrl: githubData!.htmlUrl),
+                          )),
                       child: Text(
                         'URl: ${githubData!.htmlUrl}',
                         style: TextStyle(color: Colors.blueAccent),
                       ),
                     ),
-                    SizedBox(height: 40,)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircleAvatar(
+                          radius: 9,
+                          child: Image.network(
+                              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlVvaUaLaNpixP_VC6ZkFfa44mDqvDK7-qH7SGhiLIalxqeJTjFz2isCd1lH8_kPmKqNI&usqp=CAU'),
+                        ),
+                        Text(
+                          '  ${githubData!.login}',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 10),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 40,
+                    )
                   ],
-              
-                  
                 ),
               ),
             ),

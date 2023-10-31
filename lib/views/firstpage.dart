@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:github/views/demo.dart';
+import 'package:github/views/userview.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key}) : super(key: key);
@@ -20,25 +20,24 @@ class MyHomePage extends StatelessWidget {
         centerTitle: true,
         title: TextFormField(
           onFieldSubmitted: (value) {
-
-            if(value.isNotEmpty){
-  Navigator.push(context, MaterialPageRoute(
-              builder: (context) {
-                return WeatherView(
-                  user: searched,
-                );
-              },
-            ));
-            searchcontroller.clear();
+            if (value.isNotEmpty) {
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context) {
+                  return WeatherView(
+                    user: searched,
+                  );
+                },
+              ));
+              searchcontroller.clear();
             }
             searched = value;
-
-          
           },
           controller: searchcontroller,
           decoration: InputDecoration(
               hintText: 'Enter User Name',
-              prefixIcon: Icon(Icons.search,),
+              prefixIcon: Icon(
+                Icons.search,
+              ),
               filled: true,
               fillColor: Colors.white, // Background color
               contentPadding: EdgeInsets.all(12), // Adjust the padding
