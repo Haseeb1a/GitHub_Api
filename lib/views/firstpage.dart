@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:github/controller/homecontroller.dart';
 import 'package:github/views/userview.dart';
+import 'package:provider/provider.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    String searched = "kpmajid";
-    final TextEditingController searchcontroller = TextEditingController();
-    clearsearch() {
-      searchcontroller.clear();
-    }
+   final user= Provider.of<Homecontroller>(context);
+    // String searched = "hudaifc";
+    // final TextEditingController searchcontroller = TextEditingController();
+    // clearsearch() {
+    //   searchcontroller.clear();
+    // }
 
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 0, 0, 0),
@@ -24,15 +27,15 @@ class MyHomePage extends StatelessWidget {
               Navigator.push(context, MaterialPageRoute(
                 builder: (context) {
                   return WeatherView(
-                    user: searched,
+                    user: user.searched,
                   );
                 },
               ));
-              searchcontroller.clear();
+              user.searchcontroller.clear();
             }
-            searched = value;
+           user. searched = value;
           },
-          controller: searchcontroller,
+          controller: user.searchcontroller,
           decoration: InputDecoration(
               hintText: 'Enter User Name',
               prefixIcon: Icon(
@@ -52,7 +55,7 @@ class MyHomePage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               ),
               suffixIcon: IconButton(
-                  onPressed: clearsearch,
+                  onPressed: user.clearsearch,
                   icon: Icon(
                     Icons.clear,
                     color: Colors.black,

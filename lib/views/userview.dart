@@ -1,7 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:github/controller/homecontroller.dart';
+import 'package:github/controller/profilepage.dart';
 import 'package:github/views/webview.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 import 'dart:convert';
 
 import '../model/githubmodel.dart';
@@ -16,23 +19,30 @@ class WeatherView extends StatefulWidget {
 
 class _WeatherViewState extends State<WeatherView> {
   final Githubconnections apiClient = Githubconnections();
-  Github? githubData;
+  // Github? githubData;
 
   @override
   void initState() {
+    final userdata= Provider.of<Homecontroller>(context,listen: false);
     super.initState();
-    fetchGithubData(widget.user!);
+    fetchGithubData(userdata.searched);
   }
 
   Future<void> fetchGithubData(String user) async {
+   final userdata= Provider.of<Homecontroller>(context,listen: false);
+     final userdatas= Provider.of<Profilecontroller>(context,listen: false);
     final response = await apiClient.getgithub(user);
     setState(() {
-      githubData = response;
+      userdatas.githubData = response;
     });
   }
 
   @override
   Widget build(BuildContext context) {
+
+ final userdatas= Provider.of<Profilecontroller>(context,listen: false);
+
+
     final s = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 35, 34, 34),
@@ -50,7 +60,7 @@ class _WeatherViewState extends State<WeatherView> {
         ),
         centerTitle: true,
       ),
-      body: githubData == null
+      body: userdatas.githubData == null
           ? Center(child: CircularProgressIndicator())
           : Center(
               child: Padding(
@@ -63,7 +73,7 @@ class _WeatherViewState extends State<WeatherView> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         CircleAvatar(
-                          backgroundImage: NetworkImage(githubData!.avatarUrl),
+                          backgroundImage: NetworkImage(userdatas.githubData!.avatarUrl),
                           radius: 60,
                         ),
                         SizedBox(
@@ -73,7 +83,7 @@ class _WeatherViewState extends State<WeatherView> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              ' ${githubData!.name}',
+                              ' ${userdatas.githubData!.name}',
                               style: TextStyle(
                                   fontSize: s * 0.03,
                                   fontWeight: FontWeight.bold,
@@ -83,7 +93,7 @@ class _WeatherViewState extends State<WeatherView> {
                               height: 10,
                             ),
                             Text(
-                              ' ${githubData!.login}',
+                              ' ${userdatas.githubData!.login}',
                               style: TextStyle(
                                   fontSize: s * 0.03,
                                   fontWeight: FontWeight.bold,
@@ -104,7 +114,7 @@ class _WeatherViewState extends State<WeatherView> {
                                 ),
                                 children: <TextSpan>[
                               TextSpan(
-                                text: githubData!.id.toString(),
+                                text: userdatas.githubData!.id.toString(),
                                 style: TextStyle(
                                   color: Colors.green,
                                   fontSize: 22,
@@ -133,7 +143,7 @@ class _WeatherViewState extends State<WeatherView> {
                                   ),
                                   RichText(
                                       text: TextSpan(
-                                          text: '${githubData!.followers}  ',
+                                          text: '${userdatas.githubData!.followers}  ',
                                           style: TextStyle(
                                             color: Color.fromARGB(255, 0, 0, 0),
                                             fontSize: 21,
@@ -154,7 +164,7 @@ class _WeatherViewState extends State<WeatherView> {
                                   ),
                                   RichText(
                                       text: TextSpan(
-                                          text: '${githubData!.following}  ',
+                                          text: '${userdatas.githubData!.following}  ',
                                           style: TextStyle(
                                             color: Colors.black,
                                             fontSize: 21,
@@ -195,7 +205,7 @@ class _WeatherViewState extends State<WeatherView> {
                                     children: [
                                       Icon(Icons.format_quote_sharp),
                                       Text(
-                                        githubData!.bio,
+                                        userdatas.githubData!.bio,
                                         style: TextStyle(color: Colors.white),
                                       ),
                                     ],
@@ -217,7 +227,7 @@ class _WeatherViewState extends State<WeatherView> {
                                           width: 10,
                                         ),
                                         Text(
-                                          '${githubData!.company}  ',
+                                          '${userdatas.githubData!.company}  ',
                                           style: TextStyle(
                                               color: Color.fromARGB(
                                                   255, 255, 255, 255),
@@ -227,7 +237,7 @@ class _WeatherViewState extends State<WeatherView> {
                                         Icon(Icons.location_on_outlined,
                                             color: Colors.yellow),
                                         Text(
-                                          ' ${githubData!.location}',
+                                          ' ${userdatas.githubData!.location}',
                                           style: TextStyle(
                                             color: Color.fromARGB(
                                                 255, 255, 255, 255),
@@ -252,7 +262,7 @@ class _WeatherViewState extends State<WeatherView> {
                                           ),
                                           children: <TextSpan>[
                                         TextSpan(
-                                          text: githubData!.type.toString(),
+                                          text: userdatas.githubData!.type.toString(),
                                           style: TextStyle(
                                             color: Colors.green,
                                             fontSize: 15,
@@ -265,7 +275,7 @@ class _WeatherViewState extends State<WeatherView> {
                                 children: [
                                   RichText(
                                       text: TextSpan(
-                                          text: '${githubData!.publicRepos} ',
+                                          text: '${userdatas.githubData!.publicRepos} ',
                                           style: TextStyle(
                                             color: Colors.yellow,
                                             fontSize: 18,
@@ -283,7 +293,7 @@ class _WeatherViewState extends State<WeatherView> {
                                       ])),
                                   RichText(
                                       text: TextSpan(
-                                          text: '${githubData!.publicGists} ',
+                                          text: '${userdatas.githubData!.publicGists} ',
                                           style: TextStyle(
                                             color: Colors.yellow,
                                             fontSize: 18,
@@ -322,7 +332,7 @@ class _WeatherViewState extends State<WeatherView> {
                                 ),
                                 children: <TextSpan>[
                               TextSpan(
-                                text: '${githubData!.createdAt}',
+                                text: '${userdatas.githubData!.createdAt}',
                                 style: TextStyle(
                                   color: Colors.green,
                                   fontSize: s * 0.01,
@@ -339,7 +349,7 @@ class _WeatherViewState extends State<WeatherView> {
                                 ),
                                 children: <TextSpan>[
                               TextSpan(
-                                text: ' ${githubData!.updatedAt}',
+                                text: ' ${userdatas.githubData!.updatedAt}',
                                 style: TextStyle(
                                   color: Colors.green,
                                   fontSize: s * 0.01,
@@ -354,23 +364,22 @@ class _WeatherViewState extends State<WeatherView> {
                           context,
                           MaterialPageRoute(
                             builder: (context) =>
-                                ArticleScreen(blogUrl: githubData!.htmlUrl),
+                                ArticleScreen(blogUrl: userdatas.githubData!.htmlUrl),
                           )),
                       child: Text(
-                        'URl: ${githubData!.htmlUrl}',
+                        'URl: ${userdatas.githubData!.htmlUrl}',
                         style: TextStyle(color: Colors.blueAccent),
                       ),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        CircleAvatar(
+                       CircleAvatar(
+                          backgroundImage: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlVvaUaLaNpixP_VC6ZkFfa44mDqvDK7-qH7SGhiLIalxqeJTjFz2isCd1lH8_kPmKqNI&usqp=CAU'),
                           radius: 9,
-                          child: Image.network(
-                              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlVvaUaLaNpixP_VC6ZkFfa44mDqvDK7-qH7SGhiLIalxqeJTjFz2isCd1lH8_kPmKqNI&usqp=CAU'),
                         ),
                         Text(
-                          '  ${githubData!.login}',
+                          '  ${userdatas.githubData!.login}',
                           style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
