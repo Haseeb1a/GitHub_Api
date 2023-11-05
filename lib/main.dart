@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:github/controller/homecontroller.dart';
-import 'package:github/controller/profilepage.dart';
-import 'package:github/views/firstpage.dart';
+import 'package:github/controller/viewcontroller.dart';
+import 'package:github/views/homepage/homepage.dart';
 import 'package:provider/provider.dart';
-import 'model/githubmodel.dart';
+
+import 'controller/homecontroller copy.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,9 +14,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-         ChangeNotifierProvider(create: (context)=>Homecontroller()),
-         ChangeNotifierProvider(create: (context)=>Profilecontroller()),
-         
+        ChangeNotifierProvider(create: (context) => GithubDataNotifier()),
+        ChangeNotifierProvider(create: (context) => Homecontroller())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
