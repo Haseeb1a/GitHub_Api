@@ -6,10 +6,6 @@ class GithubConnections {
 
   Future<Github?> getGithub(String? user) async {
     try {
-      if (user == null) {
-        throw Exception('User is null. Please provide a valid username.');
-      }
-
       final response = await _dio.get("https://api.github.com/users/$user");
 
       if (response.statusCode == 200) {
@@ -23,9 +19,7 @@ class GithubConnections {
       }
     } catch (e) {
       print('Error in getGithub: $e');
-      // Handle the exception or rethrow it if needed.
-      // You can log the error or perform additional error handling here.
-      return null; // You may want to return null or another default value in case of an error.
+      return null; 
     }
   }
 }
