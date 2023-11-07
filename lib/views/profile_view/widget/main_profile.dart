@@ -30,10 +30,6 @@ class Profileviewmain extends StatelessWidget {
               backgroundImage: NetworkImage(avatarUrl),
               radius: 60,
             ),
-            const SizedBox(
-              height: 10,
-              width: 50,
-            ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [

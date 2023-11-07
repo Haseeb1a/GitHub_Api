@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:github/helpers/style.dart';
 import 'package:github/views/web_viewpage/webview.dart';
 import 'package:github/views/profile_view/widget/main_profile.dart';
 import 'package:github/views/profile_view/widget/sub_details.dart';
@@ -176,7 +177,21 @@ class Profile extends StatelessWidget {
               ),
             );
           } else {
-            return const Center(child: Text('User not Found'));
+            return  Center(child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                
+                CircleAvatar(
+                  radius: 50,
+                  backgroundColor: const Color.fromARGB(255, 249, 249, 249),
+                  child: Image.asset('assets/Firefly 20231107202942.png'),
+                ),
+                const SizedBox(width: 8,),
+                const Text('User not Found !'
+                ,style: TextStyle(color: Colors.black
+                ,fontWeight: FontWeight.bold,fontSize: 23,fontStyle: FontStyle.italic),),
+              ],
+            ));
           }
         },
       ),
