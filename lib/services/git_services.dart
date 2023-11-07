@@ -2,7 +2,7 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import '../model/githubmodel.dart';
+import '../model/github_model.dart';
 
 class Githubconnections{
   Future<Github?> getgithub(String? user) async {
@@ -14,7 +14,7 @@ class Githubconnections{
       print(body);
       return Github.fromJson(body);
     } else {
-      return null;
+     throw Exception('Failed to load data');
     }
   }
 }

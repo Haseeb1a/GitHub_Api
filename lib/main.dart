@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:github/controller/viewcontroller.dart';
-import 'package:github/views/homepage/homepage.dart';
+import 'package:github/controller/view_controller.dart';
+import 'package:github/views/home_page/home_page.dart';
 import 'package:provider/provider.dart';
 
-import 'controller/homecontroller copy.dart';
+import 'controller/home_controller.dart';
 
 void main() {
   runApp(MyApp());

@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import '../../helpers/colors.dart';
+
 class ArticleScreen extends StatelessWidget {
   ArticleScreen({super.key, required this.blogUrl});
 
@@ -22,15 +24,19 @@ class ArticleScreen extends StatelessWidget {
           TextSpan(
             text: 'GIT ',
             style: TextStyle(
-                fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colorss.white),
           ),
           TextSpan(
             text: 'HUB',
             style: TextStyle(
-                fontSize: 20, fontWeight: FontWeight.bold, color: Colors.green),
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colorss.green),
           )
         ])),
-          actions: [
+        actions: [
           CircleAvatar(
             radius: 50,
             child: Image.network(

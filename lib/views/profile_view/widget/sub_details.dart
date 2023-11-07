@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../helpers/colors.dart';
+
+// ignore: must_be_immutable
 class Profilesub extends StatelessWidget {
   String bio;
   String company;
@@ -7,13 +10,14 @@ class Profilesub extends StatelessWidget {
   String type;
   String publicRepos;
   String publicGists;
-  Profilesub({super.key,required this.bio,
-  required this.company,
-  required this.location,
-  required this.type,
-  required this.publicRepos,
-  required this.publicGists
-  });
+  Profilesub(
+      {super.key,
+      required this.bio,
+      required this.company,
+      required this.location,
+      required this.type,
+      required this.publicRepos,
+      required this.publicGists});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +25,7 @@ class Profilesub extends StatelessWidget {
     return SizedBox(
       height: 200,
       child: Card(
-        color: const Color.fromARGB(255, 255, 255, 255),
+        color: Colorss.white,
         child: Padding(
           padding: const EdgeInsets.all(5.0),
           child: Column(
@@ -39,7 +43,7 @@ class Profilesub extends StatelessWidget {
                       const Icon(Icons.format_quote_sharp),
                       Text(
                         bio,
-                        style: const TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colorss.white),
                       ),
                     ],
                   ),
@@ -61,7 +65,7 @@ class Profilesub extends StatelessWidget {
                         Text(
                           '${company}  ',
                           style: TextStyle(
-                              color: const Color.fromARGB(255, 255, 255, 255),
+                              color: Colorss.white,
                               fontWeight: FontWeight.bold,
                               fontSize: s * 0.014),
                         ),
@@ -70,7 +74,7 @@ class Profilesub extends StatelessWidget {
                         Text(
                           ' ${location}',
                           style: TextStyle(
-                            color: const Color.fromARGB(255, 255, 255, 255),
+                            color: Colorss.white,
                             fontSize: s * 0.014,
                             fontWeight: FontWeight.bold,
                           ),
@@ -86,7 +90,7 @@ class Profilesub extends StatelessWidget {
                       text: TextSpan(
                           text: 'Type   ',
                           style: const TextStyle(
-                            color: Color.fromARGB(255, 0, 0, 0),
+                            color: Colorss.black,
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
                           ),
@@ -94,7 +98,7 @@ class Profilesub extends StatelessWidget {
                         TextSpan(
                           text: type.toString(),
                           style: const TextStyle(
-                            color: Colors.green,
+                            color: Colorss.green,
                             fontSize: 15,
                           ),
                         ),
@@ -107,7 +111,7 @@ class Profilesub extends StatelessWidget {
                       text: TextSpan(
                           text: '${publicRepos} ',
                           style: const TextStyle(
-                            color: Colors.black,
+                            color: Colorss.black,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
@@ -115,7 +119,7 @@ class Profilesub extends StatelessWidget {
                         TextSpan(
                           text: 'PublicRepos  ',
                           style: TextStyle(
-                            color: Colors.green,
+                            color: Colorss.green,
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                           ),
@@ -125,7 +129,7 @@ class Profilesub extends StatelessWidget {
                       text: TextSpan(
                           text: '${publicGists} ',
                           style: const TextStyle(
-                            color: Colors.black,
+                            color: Colorss.black,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
@@ -133,7 +137,7 @@ class Profilesub extends StatelessWidget {
                         TextSpan(
                           text: 'PublicGists',
                           style: TextStyle(
-                            color: Colors.green,
+                            color: Colorss.green,
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                           ),

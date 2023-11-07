@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:github/views/webviewpage/webview.dart';
-import 'package:github/views/profileview/widget/mainprofile.dart';
-import 'package:github/views/profileview/widget/subdetails.dart';
+import 'package:github/views/web_viewpage/webview.dart';
+import 'package:github/views/profile_view/widget/main_profile.dart';
+import 'package:github/views/profile_view/widget/sub_details.dart';
 import 'package:provider/provider.dart';
-import '../../controller/viewcontroller.dart';
-import '../../model/githubmodel.dart';
+import '../../controller/view_controller.dart';
+import '../../helpers/colors.dart';
+import '../../model/github_model.dart';
 
+// ignore: must_be_immutable
 class WeatherView extends StatelessWidget {
   String? user;
   WeatherView({required this.user}) {}
@@ -23,23 +25,27 @@ class WeatherView extends StatelessWidget {
                 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlVvaUaLaNpixP_VC6ZkFfa44mDqvDK7-qH7SGhiLIalxqeJTjFz2isCd1lH8_kPmKqNI&usqp=CAU'),
           )
         ],
-        backgroundColor: Colors.black,
-       title: const Text.rich(TextSpan(children: <InlineSpan>[
+        backgroundColor: Colorss.black,
+        title: const Text.rich(TextSpan(children: <InlineSpan>[
           TextSpan(
             text: 'GITHUB ',
             style: TextStyle(
-                fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colorss.white),
           ),
           TextSpan(
             text: 'USER',
             style: TextStyle(
-                fontSize: 20, fontWeight: FontWeight.bold, color: Colors.green),
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colorss.green),
           )
         ])),
         centerTitle: true,
       ),
       body: FutureBuilder<Github?>(
-        future: datauser.fetchWeatherData(user!),
+        future: datauser.fetchGitHubData(user!),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -100,14 +106,14 @@ class WeatherView extends StatelessWidget {
                               text: TextSpan(
                                   text: '  updatedAt  ',
                                   style: const TextStyle(
-                                    color: Colors.white,
+                                    color: Colorss.white,
                                     fontSize: 13,
                                   ),
                                   children: <TextSpan>[
                                 TextSpan(
                                   text: ' ${snapshot.data!.updatedAt}',
                                   style: TextStyle(
-                                    color: Colors.green,
+                                    color: Colorss.green,
                                     fontSize: s * 0.01,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -115,7 +121,9 @@ class WeatherView extends StatelessWidget {
                               ])),
                         ],
                       ),
-                      const SizedBox(height: 7,),
+                      const SizedBox(
+                        height: 7,
+                      ),
                       GestureDetector(
                         onTap: () => Navigator.push(
                             context,
@@ -123,52 +131,41 @@ class WeatherView extends StatelessWidget {
                               builder: (context) => ArticleScreen(
                                   blogUrl: snapshot.data!.htmlUrl),
                             )),
-                            child:  Container(
-
-                              
-                        height: 45,
-                        width: 130,
-                        decoration: BoxDecoration(
-                          
-                            color: Colors.black54,
-                          borderRadius: BorderRadius.circular(50),
-                          border: Border.all(
-                            width: 1,
-                            color: Color.fromARGB(255, 255, 255, 255)
+                        child: Container(
+                          height: 45,
+                          width: 130,
+                          decoration: BoxDecoration(
+                              color: Colors.black54,
+                              borderRadius: BorderRadius.circular(50),
+                              border: Border.all(width: 1, color: Colors.white),
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Color.fromRGBO(90, 90, 90, 1),
+                                  blurRadius: 5,
+                                  offset: Offset(0, 3),
+                                ),
+                              ]),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const CircleAvatar(
+                                backgroundImage: NetworkImage(
+                                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlVvaUaLaNpixP_VC6ZkFfa44mDqvDK7-qH7SGhiLIalxqeJTjFz2isCd1lH8_kPmKqNI&usqp=CAU'),
+                                radius: 9,
+                              ),
+                              Text(
+                                '  ${snapshot.data!.login}',
+                                style: const TextStyle(
+                                    color: Colorss.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 10),
+                              ),
+                            ],
                           ),
-                                  boxShadow: const [
-                                    BoxShadow(color: Color.fromRGBO(90, 90, 90, 1),blurRadius: 5,
-                                    offset: Offset(0, 3), 
-                   
-                                    ),
-                                    
-                                  ]
                         ),
-                        
-
-                        child: Row(
-
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-
-                          const CircleAvatar(
-                            backgroundImage: NetworkImage(
-                                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlVvaUaLaNpixP_VC6ZkFfa44mDqvDK7-qH7SGhiLIalxqeJTjFz2isCd1lH8_kPmKqNI&usqp=CAU'),
-                            radius: 9,
-                          ),
-                          Text(
-                            '  ${snapshot.data!.login}',
-                            style: const TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 10),
-                          ),
-                        ],
-                      ), ) ,
-
                       ),
                       // --------------------------------------------------------------------------------------------------------------------------------------------------------
-                     
+
                       const SizedBox(
                         height: 40,
                       )
