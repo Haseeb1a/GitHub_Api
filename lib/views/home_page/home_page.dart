@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:github/views/profile_view/profile_page.dart';
 import 'package:provider/provider.dart';
-
 import '../../controller/home_controller.dart';
 import '../../helpers/colors.dart';
+import '../../helpers/style.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key}) : super(key: key);
@@ -22,7 +22,7 @@ class MyHomePage extends StatelessWidget {
             if (value.isNotEmpty) {
               Navigator.push(context, MaterialPageRoute(
                 builder: (context) {
-                  return WeatherView(
+                  return Profile(
                     user: user.searched,
                   );
                 },

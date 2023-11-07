@@ -8,9 +8,9 @@ import '../../helpers/colors.dart';
 import '../../model/github_model.dart';
 
 // ignore: must_be_immutable
-class WeatherView extends StatelessWidget {
+class Profile extends StatelessWidget {
   String? user;
-  WeatherView({required this.user}) {}
+  Profile({required this.user}) {}
   @override
   Widget build(BuildContext context) {
     print('ihkj');
@@ -52,6 +52,7 @@ class WeatherView extends StatelessWidget {
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if (snapshot.hasData) {
+              final githubData = snapshot.data!; 
             return Container(
               color: const Color.fromARGB(255, 35, 34, 34),
               child: Center(

@@ -32,9 +32,10 @@ class Profileviewmain extends StatelessWidget {
             ),
             const SizedBox(
               height: 10,
+              width: 50,
             ),
             Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
                   ' ${name}',
