@@ -15,13 +15,16 @@ class Profile extends StatelessWidget {
   Profile({required this.user}) {}
   @override
   Widget build(BuildContext context) {
-        // Provider.of <CheckconnectivityProvider>(context).getInternetConnectivity(context);
+    // Provider.of <CheckconnectivityProvider>(context).getInternetConnectivity(context);
 
     print('ihkj');
     final s = MediaQuery.of(context).size.height;
     final datauser = Provider.of<GithubDataNotifier>(context, listen: false);
     return Scaffold(
+      // co
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
+        
         actions: [
           CircleAvatar(
             radius: 50,
@@ -128,43 +131,48 @@ class Profile extends StatelessWidget {
                       const SizedBox(
                         height: 7,
                       ),
-                      GestureDetector(
-                        onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ArticleScreen(
-                                  blogUrl: snapshot.data!.htmlUrl),
-                            )),
-                        child: Container(
-                          height: 45,
-                          width: 130,
-                          decoration: BoxDecoration(
-                              color: Colors.black54,
-                              borderRadius: BorderRadius.circular(50),
-                              border: Border.all(width: 1, color: Colors.white),
-                              boxShadow: const [
-                                BoxShadow(
-                                  color: Color.fromRGBO(90, 90, 90, 1),
-                                  blurRadius: 5,
-                                  offset: Offset(0, 3),
+                      Material(
+                        color: Color.fromRGBO(32, 32, 32, 1),
+                        child: InkWell(
+                          
+                          splashColor: Colors.white,
+                          onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ArticleScreen(
+                                    blogUrl: snapshot.data!.htmlUrl),
+                              )),
+                          child: Container(
+                            height: 45,
+                            width: 130,
+                            decoration: BoxDecoration(
+                                color: Colors.black54,
+                                borderRadius: BorderRadius.circular(50),
+                                border: Border.all(width: 1, color: Colors.white),
+                                boxShadow: const [
+                                  BoxShadow(
+                                    color: Color.fromRGBO(90, 90, 90, 1),
+                                    blurRadius: 5,
+                                    offset: Offset(0, 3),
+                                  ),
+                                ]),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const CircleAvatar(
+                                  backgroundImage: NetworkImage(
+                                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlVvaUaLaNpixP_VC6ZkFfa44mDqvDK7-qH7SGhiLIalxqeJTjFz2isCd1lH8_kPmKqNI&usqp=CAU'),
+                                  radius: 9,
                                 ),
-                              ]),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const CircleAvatar(
-                                backgroundImage: NetworkImage(
-                                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlVvaUaLaNpixP_VC6ZkFfa44mDqvDK7-qH7SGhiLIalxqeJTjFz2isCd1lH8_kPmKqNI&usqp=CAU'),
-                                radius: 9,
-                              ),
-                              Text(
-                                '  ${snapshot.data!.login}',
-                                style: const TextStyle(
-                                    color: Colorss.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 10),
-                              ),
-                            ],
+                                Text(
+                                  '  ${snapshot.data!.login}',
+                                  style: const TextStyle(
+                                      color: Colorss.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 10),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),

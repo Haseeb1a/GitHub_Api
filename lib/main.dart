@@ -20,7 +20,10 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => GithubDataNotifier()),
         ChangeNotifierProvider(create: (context) => Homecontroller())
       ],
+      
       child: MaterialApp(
+      
+        theme: ThemeData(useMaterial3: true),
         debugShowCheckedModeBanner: false,
         home: MyHomePage(),
       ),

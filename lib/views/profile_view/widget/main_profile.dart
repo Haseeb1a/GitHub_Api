@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:github/helpers/colors.dart';
+import 'package:typethis/typethis.dart';
 
 // ignore: must_be_immutable
 class Profileviewmain extends StatelessWidget {
@@ -33,13 +34,22 @@ class Profileviewmain extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
-                  ' ${name}',
+                TypeThis(
+                  string: '$name',
+                  speed: 70,
                   style: TextStyle(
                       fontSize: s * 0.03,
                       fontWeight: FontWeight.bold,
                       color: Colorss.white),
                 ),
+                // Text(
+
+                //   ' ${name}',
+                //   style: TextStyle(
+                //       fontSize: s * 0.03,
+                //       fontWeight: FontWeight.bold,
+                //       color: Colorss.white),
+                // ),
                 const SizedBox(
                   height: 10,
                 ),
