@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:github/controller/connectivity_controller.dart';
 import 'package:github/helpers/style.dart';
 import 'package:github/views/web_viewpage/webview.dart';
 import 'package:github/views/profile_view/widget/main_profile.dart';
@@ -14,6 +15,8 @@ class Profile extends StatelessWidget {
   Profile({required this.user}) {}
   @override
   Widget build(BuildContext context) {
+        // Provider.of <CheckconnectivityProvider>(context).getInternetConnectivity(context);
+
     print('ihkj');
     final s = MediaQuery.of(context).size.height;
     final datauser = Provider.of<GithubDataNotifier>(context, listen: false);
@@ -53,7 +56,6 @@ class Profile extends StatelessWidget {
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if (snapshot.hasData) {
-              final githubData = snapshot.data!; 
             return Container(
               color: const Color.fromARGB(255, 35, 34, 34),
               child: Center(
@@ -177,19 +179,26 @@ class Profile extends StatelessWidget {
               ),
             );
           } else {
-            return  Center(child: Row(
+            return Center(
+                child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                
                 CircleAvatar(
                   radius: 50,
                   backgroundColor: const Color.fromARGB(255, 249, 249, 249),
                   child: Image.asset('assets/Firefly 20231107202942.png'),
                 ),
-                const SizedBox(width: 8,),
-                const Text('User not Found !'
-                ,style: TextStyle(color: Colors.black
-                ,fontWeight: FontWeight.bold,fontSize: 23,fontStyle: FontStyle.italic),),
+                const SizedBox(
+                  width: 8,
+                ),
+                const Text(
+                  'User not Found !',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 23,
+                      fontStyle: FontStyle.italic),
+                ),
               ],
             ));
           }

@@ -12,14 +12,13 @@ class GithubConnections {
         final Map<String, dynamic> body = response.data;
         print(response.data);
         return Github.fromJson(body);
-        
       } else {
         throw Exception(
             'Failed to load data. Status code: ${response.statusCode}');
       }
     } catch (e) {
       print('Error in getGithub: $e');
-      return null; 
+      return null;
     }
   }
 }

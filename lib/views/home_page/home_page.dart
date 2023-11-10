@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:github/controller/connectivity_controller.dart';
 import 'package:github/views/profile_view/profile_page.dart';
 import 'package:provider/provider.dart';
 import '../../controller/home_controller.dart';
@@ -10,6 +11,7 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Provider.of <CheckconnectivityProvider>(context).getInternetConnectivity(context);
     final user = Provider.of<Homecontroller>(context, listen: false);
     return Scaffold(
       backgroundColor: Colorss.black,

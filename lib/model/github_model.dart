@@ -56,9 +56,9 @@ class Github {
     required this.blog,
     this.location,  // Update to nullable
     this.email,  // Update to nullable
-    this.hireable,  // Update to nullable
+    this.hireable, 
     required this.bio,
-    this.twitterUsername,  // Update to nullable
+    this.twitterUsername, 
     required this.publicRepos,
     required this.publicGists,
     required this.followers,
@@ -105,6 +105,4 @@ class Github {
       updatedAt: DateTime.parse(json["updated_at"]),
     );
   }
-
-  // ...
 }

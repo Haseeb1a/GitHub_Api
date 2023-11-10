@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:github/controller/connectivity_controller.dart';
 import 'package:github/controller/view_controller.dart';
 import 'package:github/views/home_page/home_page.dart';
 import 'package:provider/provider.dart';
@@ -14,6 +15,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(
+            create: (context) => CheckconnectivityProvider()),
         ChangeNotifierProvider(create: (context) => GithubDataNotifier()),
         ChangeNotifierProvider(create: (context) => Homecontroller())
       ],
