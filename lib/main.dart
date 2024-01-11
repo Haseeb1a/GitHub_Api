@@ -3,7 +3,6 @@ import 'package:github/controller/connectivity_controller.dart';
 import 'package:github/controller/view_controller.dart';
 import 'package:github/views/home_page/home_page.dart';
 import 'package:provider/provider.dart';
-
 import 'controller/home_controller.dart';
 
 void main() {
@@ -15,8 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-            create: (context) => CheckconnectivityProvider()),
+        ChangeNotifierProvider(create: (context) => CheckconnectivityProvider()),
         ChangeNotifierProvider(create: (context) => GithubDataNotifier()),
         ChangeNotifierProvider(create: (context) => Homecontroller())
       ],

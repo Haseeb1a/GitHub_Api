@@ -10,6 +10,7 @@ class GithubDataNotifier with ChangeNotifier {
     githubData = await apiClient.getGithub(name);
     print(githubData?.name);
     return githubData;
+    
   }
   
 }
