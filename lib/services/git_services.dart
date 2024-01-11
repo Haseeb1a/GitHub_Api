@@ -1,5 +1,11 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import '../model/github_model.dart';
+
+
+ValueNotifier<List<Github>> githubData = ValueNotifier([]);
+
 
 class GithubConnections {
   final Dio _dio = Dio();
@@ -11,6 +17,9 @@ class GithubConnections {
       if (response.statusCode == 200) {
         final Map<String, dynamic> body = response.data;
         print(response.data);
+        //
+        // remove.add(Github.fromJson(body));
+        await addHiveData(Github.fromJson(body));
         return Github.fromJson(body);
       } else {
         throw Exception(
@@ -21,4 +30,41 @@ class GithubConnections {
       return null;
     }
   }
+
+  Future addHiveData(value) async {
+    print(value);
+
+    final persondata = await Hive.openBox<Github>('person_db');
+    // if (persondata.values.contains(user)) {
+    //   return;
+    // } else {
+    //   print('jldfhldjghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh');
+    // }
+    final id = await persondata.add(value);
+    print(id);
+    print(value);
+
+    // persondata.add(value);
+    githubData.value.clear();
+    githubData.value.addAll(persondata.values);
+    githubData.notifyListeners();
+    getFromtheHive();
+
+    // githubData.notifyListeners();
+  }
+
+  Future<void> getFromtheHive() async {
+    final personDataBox = await Hive.openBox<Github>('person_db');
+    githubData.value.clear();
+    githubData.value.addAll(personDataBox.values);
+    githubData.notifyListeners();
+  }
+
+  Future<void> deleteFromTheHive(int index) async {
+    final personDataBox = await Hive.openBox<Github>('person_db');
+    personDataBox.deleteAt(index);
+    getFromtheHive();
+    githubData.notifyListeners();
+  }
 }
+
