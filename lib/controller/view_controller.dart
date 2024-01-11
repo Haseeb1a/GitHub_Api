@@ -12,5 +12,8 @@ class GithubDataNotifier with ChangeNotifier {
     return githubData;
     
   }
-  
+   getfromhive() async{
+    print('vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv');
+   await apiClient.getFromtheHive();
+  }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:github/controller/bottom_bar.controller.dart';
 import 'package:github/controller/connectivity_controller.dart';
 import 'package:github/controller/view_controller.dart';
 import 'package:github/views/home_page/home_page.dart';
@@ -16,7 +17,8 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => CheckconnectivityProvider()),
         ChangeNotifierProvider(create: (context) => GithubDataNotifier()),
-        ChangeNotifierProvider(create: (context) => Homecontroller())
+        ChangeNotifierProvider(create: (context) => Homecontroller()),
+                ChangeNotifierProvider(create: (context) => BottomController())
       ],
       
       child: MaterialApp(
