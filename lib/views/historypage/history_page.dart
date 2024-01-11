@@ -1,4 +1,3 @@
-
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:github/controller/view_controller.dart';
@@ -42,11 +41,13 @@ class Hivepage extends StatelessWidget {
       body: ValueListenableBuilder(
           valueListenable: githubData,
           builder: (context, List<LocalGithub> githubDataSet, Widget? child) {
-            print('lllllllllllllllllllllllllllllllllllllllllllllllllllll${githubDataSet.length}');
-            List<LocalGithub> githubData = githubDataSet.toList();
+            print(
+                'lllllllllllllllllllllllllllllllllllllllllllllllllllll${githubDataSet.length}');
+            List<LocalGithub> githubData = githubDataSet.reversed.toList();
             return ListView.builder(
+                physics: BouncingScrollPhysics(),
                 padding: EdgeInsets.only(top: 10),
-                reverse: true,
+                // reverse: true,
                 itemCount: githubData.length,
                 itemBuilder: (context, index) {
                   final data = githubData[index];
@@ -107,8 +108,7 @@ class Hivepage extends StatelessWidget {
                           ),
                           trailing: IconButton(
                               onPressed: () {
-                                GithubConnections().deleteFromTheHive(
-                                    index);
+                                GithubConnections().deleteFromTheHive(index);
                               },
                               icon: Icon(
                                 Icons.close_rounded,
