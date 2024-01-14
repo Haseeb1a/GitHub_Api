@@ -6,6 +6,7 @@ import 'package:github/services/git_services.dart';
 import 'package:github/widgets/alert_box.dart';
 import 'package:iconly/iconly.dart';
 import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 import '../../helpers/colors.dart';
@@ -44,33 +45,39 @@ class Hivepage extends StatelessWidget {
             print(
                 'lllllllllllllllllllllllllllllllllllllllllllllllllllll${githubDataSet.length}');
             List<LocalGithub> githubData = githubDataSet.reversed.toList();
-            return ListView.builder(
-                physics: BouncingScrollPhysics(),
-                padding: EdgeInsets.only(top: 10),
-                // reverse: true,
-                itemCount: githubData.length,
-                itemBuilder: (context, index) {
-                  final data = githubData[index];
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                    ),
-                    child: Container(
-                      margin: const EdgeInsets.only(bottom: 16.0),
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: [
-                            BoxShadow(
-                                offset: const Offset(0, 10),
-                                color: Colors.grey.withOpacity(0.3),
+            if (githubDataSet.isEmpty) {
+              return Center(child: SizedBox(
+                height: 300,
+                width: 300,
+                child: Lottie.asset('assets/Animation - 1705058470067.json')));
+            } else {
+              return ListView.builder(
+                  physics: BouncingScrollPhysics(),
+                  padding: EdgeInsets.only(top: 10),
+                  // reverse: true,
+                  itemCount: githubData.length,
+                  itemBuilder: (context, index) {
+                    final data = githubData[index];
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                      ),
+                      child: Container(
+                        margin: const EdgeInsets.only(bottom: 16.0),
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                  offset: const Offset(0, 10),
+                                  color: Colors.grey.withOpacity(0.3),
 
-                                //  .withOpacity(0.09),
-                                blurRadius: 10.0,
-                                spreadRadius: 4.0)
-                          ]),
-                      child: ListTile(
+                                  //  .withOpacity(0.09),
+                                  blurRadius: 10.0,
+                                  spreadRadius: 4.0)
+                            ]),
+                        child: ListTile(
                           leading: CircleAvatar(
                             backgroundColor: Colors.white24,
                             //  borderRadius: BorderRadius.circular(12),
@@ -99,27 +106,29 @@ class Hivepage extends StatelessWidget {
                               Expanded(
                                 child: Text(
                                   DateFormat(
-                                    'MM-dd- yyyy  HH:mm',
+                                    'MM-dd- yyyy    HH:mm',
                                   ).format(data.dateTime!),
                                   style: TextStyle(color: Colors.black),
                                 ),
                               )
                             ],
                           ),
-                          trailing: IconButton(
-                              onPressed: () {
-                                GithubConnections().deleteFromTheHive(index);
-                              },
-                              icon: Icon(
-                                Icons.close_rounded,
-                                color: Colors.red,
-                              ))
+                          // trailing: IconButton(
+                          //     onPressed: () {
+                          //       GithubConnections().deleteFromTheHive(index);
+                          //     },
+                          //     icon: Icon(
+                          //       Icons.close_rounded,
+                          //       color: Colors.red,
+                          //     ))
                           // Text(DateFormat('MM-dd- yyyy      HH:mm')
                           //     .format(data.dateTime!)),
-                          ),
-                    ),
-                  );
-                });
+                        ),
+                      ),
+                    );
+                  });
+            }
+            ;
           }),
     );
   }

@@ -8,7 +8,7 @@ class GithubDataNotifier with ChangeNotifier {
 
   Future<Github?> fetchGitHubData(String name) async {
     githubData = await apiClient.getGithub(name);
-    print(githubData?.name);
+    print(githubData!.name);
     return githubData;
     
   }

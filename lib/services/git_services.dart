@@ -4,9 +4,7 @@ import 'package:github/model/local_github.dart';
 import 'package:hive_flutter/adapters.dart';
 import '../model/github_model.dart';
 
-
 ValueNotifier<List<LocalGithub>> githubData = ValueNotifier([]);
-
 
 class GithubConnections {
   final Dio _dio = Dio();
@@ -18,6 +16,7 @@ class GithubConnections {
       if (response.statusCode == 200) {
         final Map<String, dynamic> body = response.data;
         print(response.data);
+        // print(object)
         //
         // remove.add(Github.fromJson(body));
         await addHiveData(LocalGithub.fromJson(body));
@@ -33,6 +32,7 @@ class GithubConnections {
   }
 
   Future addHiveData(value) async {
+    print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
     print(value);
 
     final persondata = await Hive.openBox<LocalGithub>('person_db');
@@ -68,4 +68,3 @@ class GithubConnections {
     githubData.notifyListeners();
   }
 }
-
